@@ -1,13 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Questions from "./Questions";
 import Completed from "./Completed";
+import styles from "./TestPage.module.css";
 
+//Creating custom datatype for the QA
 type Question = {
   question: string;
   options: string[];
   answer: number;
 };
 
+//Questions and it's answers for the quiz
 const QA: Question[] = [
   {
     question:
@@ -42,13 +45,14 @@ const TestPage = (props: any) => {
   const [completed, setCompleted] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
   const timerRef = useRef(null);
-
   const { question, options, answer } = QA[active];
 
-  const changeOption = (value: number): void => {
+  //changing the selected option
+  const changeOption = useCallback((value: number): void => {
     setSelectOption(parseInt(value, 0));
-  };
+  }, []);
 
+  //Function for the the button to the next question
   const handleNextClick = (): void => {
     setSelectOption(null);
     if (answer === selectOption + 1) {
@@ -73,6 +77,7 @@ const TestPage = (props: any) => {
     }
   };
 
+  //Function for displaying time format using the value
   const formatTime = (timeInSeconds: number): string => {
     const minutes = Math.floor(timeInSeconds / 60)
       .toString()
@@ -81,9 +86,11 @@ const TestPage = (props: any) => {
     const seconds = Math.floor(timeInSeconds % 60)
       .toString()
       .padStart(2, "0");
+
     return `${minutes}:${seconds}`;
   };
 
+  //Whenever the component is mounted starting the timer and assigning it to timerRef
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setTime((time) => time + 1);
@@ -91,6 +98,7 @@ const TestPage = (props: any) => {
     return () => clearInterval(timerRef.current);
   }, []);
 
+  //Whenever the timer exceeds 60 seconds redirecting to the result
   useEffect(() => {
     if (time >= 60) {
       setCompleted(true);
@@ -102,21 +110,19 @@ const TestPage = (props: any) => {
     <div
       data-aos="fade-left"
       data-aos-anchor="#example-anchor"
-      className="z-30 bg-white fixed rounded-lg h-screen w-screen sm:h-[95vh] sm:w-[50vw] transition-all justify-around"
+      className={styles.MainContainer}
     >
       {!completed ? (
-        <div className="flex flex-col h-full justify-between">
+        <div className={styles.InnerContainer}>
           <div>
-            <div className=" w-full flex flex-row justify-between p-5">
-              <p className=" bg-blue-500 text-white px-4 rounded-lg">
+            <div className={styles.DivContainer}>
+              <p className={styles.QuestionContainer}>
                 {Math.floor(active + 1)
                   .toString()
                   .padStart(2, "0")}{" "}
                 / {Math.floor(QA.length).toString().padStart(2, "0")}
               </p>
-              <p className=" bg-green-500 text-white px-4 rounded-lg">
-                {formatTime(time)}
-              </p>
+              <p className={styles.ParagraphCustom}>{formatTime(time)}</p>
             </div>
             <Questions
               question={question}
@@ -125,13 +131,12 @@ const TestPage = (props: any) => {
               changeOption={changeOption}
             />
           </div>
-
           <button
             onClick={handleNextClick}
             className={
               selectOption !== null
-                ? "m-3 px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-400"
-                : "bg-blue-200 m-3 px-4 py-1 text-white rounded-md "
+                ? styles.ButtonSelected
+                : styles.ButtonUnselected
             }
             disabled={selectOption === null}
           >

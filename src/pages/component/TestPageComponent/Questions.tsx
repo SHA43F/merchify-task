@@ -1,15 +1,15 @@
-const Questions = (props: any) => {
+const Questions = ({ question, options, changeOption, selectOption }: any) => {
   return (
     <div className="p-4">
-      <h2>{props.question}</h2>
-      {props.options.map((option: string, index: number) => (
+      <h2>{question}</h2>
+      {options.map((option: string, index: number) => (
         <div
           key={index}
-          onClick={props.changeOption.bind(null, index)}
+          onClick={changeOption.bind(null, index)}
           className={
-            index !== props.selectOption
-              ? "w-full flex flex-row justify-between items-center p-4 border border-solid rounded-lg my-4"
-              : "w-full flex flex-row justify-between items-center p-4 border border-solid border-blue-600 rounded-lg my-4"
+            index !== selectOption
+              ? "w-full flex flex-row justify-between items-center p-4 border border-solid rounded-lg my-4 bg-white shadow-md"
+              : "w-full flex flex-row justify-between items-center p-4 border border-solid border-blue-600 bg-white shadow-md rounded-lg my-4"
           }
         >
           <label htmlFor={option} className="text-base sm:text-lg text-justify">
@@ -20,8 +20,8 @@ const Questions = (props: any) => {
             id={option}
             name="option"
             value={index}
-            checked={index === props.selectOption ? true : false}
-            onChange={props.changeOption.bind(null, index)}
+            checked={index === selectOption ? true : false}
+            onChange={() => changeOption(index)}
             className=" w-5 h-5"
           />
         </div>

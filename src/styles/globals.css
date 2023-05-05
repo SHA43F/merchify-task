@@ -8,8 +8,11 @@
     @apply p-0 m-0 box-border;
   }
 
-  body,
   html {
+    @apply font-CustomFont flex justify-center items-center h-screen bg-gradient-to-r from-cyan-500 to-blue-500;
+  }
+
+  body {
     @apply font-CustomFont flex justify-center items-center h-screen;
   }
 

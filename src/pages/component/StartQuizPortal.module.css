@@ -5,3 +5,7 @@
 .InnerContainer {
   @apply z-20 bg-white h-[50vh] fixed rounded-lg flex items-center w-[90vw] flex-col sm:w-[40vw] transition-all justify-around;
 }
+
+.Li {
+  @apply flex flex-row items-center;
+}

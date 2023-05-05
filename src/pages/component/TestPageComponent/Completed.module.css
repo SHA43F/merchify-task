@@ -1,0 +1,31 @@
+.OuterContainer {
+  @apply z-40 bg-slate-100 fixed rounded-lg h-screen w-screen sm:h-[95vh] sm:w-[50vw] transition-all justify-around;
+}
+
+.InnerContainer {
+  @apply flex flex-col h-full items-center justify-between;
+}
+
+.DivContainer {
+  @apply shadow-lg bg-sky-200 shadow-gray-200 rounded-md w-2/3 md:w-1/2 flex flex-col items-center m-4 py-2 px-1 justify-between;
+}
+
+.MiddleDiv {
+  @apply flex flex-row justify-around w-full;
+}
+
+.DivRepeated {
+  @apply shadow-md shadow-gray-200 rounded-md w-1/3 flex flex-col items-center bg-fuchsia-300;
+}
+
+.AnswersDiv {
+  @apply p-4 shadow-lg shadow-gray-200 rounded-md bg-gray-100 w-11/12 m-3;
+}
+
+.ParagraphCustom {
+  @apply text-[12px] sm:text-[14px] font-bold text-justify px-1;
+}
+
+.ParagraphCorrect {
+  @apply bg-green-400 w-fit rounded-md px-2 mx-5 text-[12px] sm:text-[14px];
+}

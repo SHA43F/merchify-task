@@ -8,17 +8,19 @@ import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const [startQuiz, showStartQuiz] = useState<boolean>(false);
+  const [startTest, setStartTest] = useState<boolean>(false);
 
+  //Function for opening the modal to start the quiz
   const openStartQuiz = useCallback(() => {
     showStartQuiz(true);
   }, []);
 
+  //Function for closing the modal to start the quiz
   const closeStartQuiz = useCallback(() => {
     showStartQuiz(false);
   }, []);
 
-  const [startTest, setStartTest] = useState<boolean>(false);
-
+  //Function for starting the test on clicking the start test button also closes the modal
   const openStartTest = useCallback(() => {
     showStartQuiz(false);
     setStartTest((startTest) => !startTest);
@@ -36,10 +38,10 @@ const HomePage = () => {
           <div className="py-3">
             <h2>Beginner's React Quiz</h2>
             <p className=" text-justify">
-              Make the perfect use of React JS Quiz, and practice until you are
-              satisfied with your skills, and knowledge. You will get 1 point
-              for each correct answer. At the end of the Quiz, your total score
-              will be displayed. Maximum score is 4 points.
+              Make the perfect use of the React JS Quiz and practise until you
+              are satisfied with your skills and knowledge. You will get 1 point
+              for each correct answer. At the end of the quiz, your total score
+              will be displayed. The maximum score is 4 points.
             </p>
           </div>
           <div>
