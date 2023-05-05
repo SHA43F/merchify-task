@@ -1,0 +1,7 @@
+.HomePage {
+  @apply rounded-lg flex items-center h-screen w-screen sm:h-[95vh] flex-col sm:w-[50vw] transition-all bg-slate-100 shadow-md shadow-gray-500/50 justify-around;
+}
+
+.Image {
+  @apply w-4/5 md:w-3/5 rounded-lg my-4;
+}

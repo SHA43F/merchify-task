@@ -1,0 +1,7 @@
+.MainContainer {
+  @apply z-10 h-screen w-screen sm:h-[95vh] fixed rounded-lg sm:w-[50vw] bg-gray-500 bg-opacity-50 flex items-center flex-col justify-around;
+}
+
+.InnerContainer {
+  @apply z-20 bg-white h-[50vh] fixed rounded-lg flex items-center w-[90vw] flex-col sm:w-[40vw] transition-all justify-around;
+}
